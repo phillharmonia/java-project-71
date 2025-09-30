@@ -1,0 +1,35 @@
+*.class
+
+# Логи
+*.log
+
+# Пакеты и архивы
+*.jar
+*.war
+*.ear
+
+# Конфиги сборки
+hs_err_pid*
+
+# IDE (IntelliJ IDEA, Eclipse, NetBeans)
+.idea/
+*.iml
+*.ipr
+*.iws
+.classpath
+.project
+.settings/
+nbproject/
+
+# Gradle
+.gradle/
+build/
+
+# Maven
+target/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
