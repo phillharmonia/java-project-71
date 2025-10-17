@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    id("org.sonarqube") version "7.0.0.6105"
     checkstyle
     id("com.github.ben-manes.versions") version "0.52.0"
     application
@@ -30,4 +31,10 @@ tasks.test {
 checkstyle {
     toolVersion = "10.12.1" // например
     configFile = file("config/checkstyle/checkstyle.xml")
+}
+sonar {
+    properties {
+        property("sonar.projectKey", "phillharmonia_java-project-71")
+        property("sonar.organization", "phillharmonia")
+    }
 }
