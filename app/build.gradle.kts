@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    checkstyle
     id("com.github.ben-manes.versions") version "0.52.0"
     application
 }
@@ -25,4 +26,8 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+}
+checkstyle {
+    toolVersion = "10.12.1" // например
+    configFile = file("config/checkstyle/checkstyle.xml")
 }
