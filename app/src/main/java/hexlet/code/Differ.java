@@ -10,9 +10,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 public class Differ {
-    public static String generate(String filePath1, String filePath2)  throws Exception {
-        Map<String, Object> data1 = readFile(filePath1);
-        Map<String, Object> data2 = readFile(filePath2);
+    public static String generate(String filePath1, String filePath2) throws Exception {
+        String content1 = Files.readString(Path.of(filePath1));
+        String content2 = Files.readString(Path.of(filePath2));
+
+        String ext1 = getFileExtension(filePath1);
+        String ext2 = getFileExtension(filePath2);
+
+        Map<String, Object> data1 = Parser.parse(content1, ext1);
+        Map<String, Object> data2 = Parser.parse(content2, ext2);
 
         Set<String> allKeys = new TreeSet<>();
         allKeys.addAll(data1.keySet());
@@ -39,10 +45,8 @@ public class Differ {
         result.append("}");
         return result.toString();
     }
-    private static Map<String, Object> readFile(String filePath) throws Exception {
-        Path path = Path.of(filePath).toAbsolutePath().normalize();
-        String content = Files.readString(path);
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.readValue(content, Map.class);
+    private static String getFileExtension(String filePath) {
+        int index = filePath.lastIndexOf('.');
+        return (index == -1) ? "" : filePath.substring(index + 1);
     }
 }

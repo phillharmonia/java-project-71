@@ -19,4 +19,18 @@ public class DifferTest {
         assertTrue(actual.contains("+ timeout: 20"));
         assertTrue(actual.contains("+ verbose: true"));
     }
+    @Test
+    public void testGenerateFlatYaml() throws Exception {
+        String file1 = Path.of("src", "test", "resources", "file1.yaml").toString();
+        String file2 = Path.of("src", "test", "resources", "file2.yaml").toString();
+
+        String actual = Differ.generate(file1, file2);
+
+        assertTrue(actual.contains("- follow: false"));
+        assertTrue(actual.contains("host: hexlet.io"));
+        assertTrue(actual.contains("- proxy: 123.234.53.22"));
+        assertTrue(actual.contains("- timeout: 50"));
+        assertTrue(actual.contains("+ timeout: 20"));
+        assertTrue(actual.contains("+ verbose: true"));
+    }
 }
