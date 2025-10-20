@@ -21,8 +21,8 @@ public class DifferTest {
     }
     @Test
     public void testGenerateFlatYaml() throws Exception {
-        String file1 = Path.of("src", "test", "resources", "file1.yaml").toString();
-        String file2 = Path.of("src", "test", "resources", "file2.yaml").toString();
+        String file1 = Path.of("src", "test", "resources", "file1.yml").toString();
+        String file2 = Path.of("src", "test", "resources", "file2.yml").toString();
 
         String actual = Differ.generate(file1, file2);
 

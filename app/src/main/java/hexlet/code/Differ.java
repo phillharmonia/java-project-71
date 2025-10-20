@@ -6,8 +6,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 
 public class Differ {
     public static String generate(String filePath1, String filePath2) throws Exception {
