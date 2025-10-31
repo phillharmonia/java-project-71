@@ -9,3 +9,4 @@
 
 ## Пример запуска
 [Демонстрация сравнения](https://asciinema.org/a/iYp60sW5zcN6XKzOfH6f6grjc)
+[Демонстрация сравнения](https://asciinema.org/a/hruz39lvVBrg4dw4wuslfBJoD)
