@@ -14,7 +14,7 @@ import java.util.concurrent.Callable;
         version = "gendiff 1.0"
 )
 
-public class App implements Callable<Integer> {
+public final class App implements Callable<Integer> {
     @Option(
             names = {"-f", "--format"},
             paramLabel = "format",
