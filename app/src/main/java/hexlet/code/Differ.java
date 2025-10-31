@@ -1,14 +1,15 @@
 package hexlet.code;
 
+import hexlet.code.formatters.Formatter;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.List;
 
 
 public class Differ {
-    public static String generate(String filePath1, String filePath2) throws Exception {
+    public static String generate(String filePath1, String filePath2, String format) throws Exception {
         String content1 = Files.readString(Path.of(filePath1));
         String content2 = Files.readString(Path.of(filePath2));
 
@@ -18,30 +19,12 @@ public class Differ {
         Map<String, Object> data1 = Parser.parse(content1, ext1);
         Map<String, Object> data2 = Parser.parse(content2, ext2);
 
-        Set<String> allKeys = new TreeSet<>();
-        allKeys.addAll(data1.keySet());
-        allKeys.addAll(data2.keySet());
+        List<DiffNode> diff = DiffBuilder.buildDiff(data1, data2);
 
-        StringBuilder result = new StringBuilder("{\n");
-
-        for (String key : allKeys) {
-            Object val1 = data1.get(key);
-            Object val2 = data2.get(key);
-
-            if (!data2.containsKey(key)) {
-                result.append("  - ").append(key).append(": ").append(val1).append("\n");
-            } else if (!data1.containsKey(key)) {
-                result.append("  + ").append(key).append(": ").append(val2).append("\n");
-            } else if (val1 == null && val2 == null || val1 != null && val1.equals(val2)) {
-                result.append("    ").append(key).append(": ").append(val1).append("\n");
-            } else {
-                result.append("  - ").append(key).append(": ").append(val1).append("\n");
-                result.append("  + ").append(key).append(": ").append(val2).append("\n");
-            }
-        }
-
-        result.append("}");
-        return result.toString();
+        return Formatter.format(diff, format);
+    }
+    public static String generate(String filePath1, String filePath2) throws Exception {
+        return generate(filePath1, filePath2, "stylish");
     }
     private static String getFileExtension(String filePath) {
         int index = filePath.lastIndexOf('.');

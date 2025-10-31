@@ -18,7 +18,8 @@ public class App implements Callable<Integer> {
     @Option(
             names = {"-f", "--format"},
             paramLabel = "format",
-            description = "output format [default: stylish]"
+            description = "output format [default: stylish],",
+            defaultValue = "stylish"
     )
     private String format;
 
@@ -30,7 +31,7 @@ public class App implements Callable<Integer> {
     @Override
     public Integer call() throws Exception {
         try {
-            System.out.println(Differ.generate(filepath1, filepath2));
+            System.out.println(Differ.generate(filepath1, filepath2, format));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
